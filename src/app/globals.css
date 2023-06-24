@@ -2,6 +2,37 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-:root{
+@import '../styles/core-styles.css';
 
+:root {
+  --bg-layer-00: hsl(var(--neutral-40));
+  --bg-layer-01: hsl(var(--neutral-80));
+  --bg-layer-02: hsl(var(--neutral-100));
+  --bg-layer-03: hsl(var(--neutral-120));
+  --bg-layer-04: hsl(var(--neutral-140));
+  --bg-layer-05: hsl(var(--neutral-160));
+  --bg-layer-06: hsl(var(--neutral-180));
+
+  --border-00: hsl(var(--neutral-120));
+  --border-01: hsl(var(--neutral-160));
+  --border-02: hsl(var(--neutral-180));
+
+  --bg-interactive-primary-resting: hsl(var(--accent-500));
+  --bg-interactive-primary-hover: hsl(var(--accent-600));
+  --bg-interactive-primary-pressed: hsl(var(--accent-700));
+}
+
+:root.light {
+  --bg-layer-00: var(--neutral-1000);
+  --bg-layer-01: var(--neutral-980);
+  --bg-layer-02: var(--neutral-940);
+  --bg-layer-03: var(--neutral-900);
+
+  --border-00: var(--neutral-860);
+  --border-01: var(--neutral-820);
+  --border-02: var(--neutral-780);
+
+  --bg-interactive-primary-resting: var(--accent-300);
+  --bg-interactive-primary-hover: var(--accent-200);
+  --bg-interactive-primary-pressed: var(--accent-100);
 }

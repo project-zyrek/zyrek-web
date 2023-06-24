@@ -1,14 +1,65 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  darkMode: false,
-  plugins: [],
-  // or 'media' or 'class'
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        base: 'var(--bg-layer-00)',
+        card: 'var(--bg-layer-01)',
+        'card-hover': 'var(--bg-layer-02)',
+        'card-active': 'var(--bg-layer-03)',
+        'card-selected': 'var(--bg-layer-04)',
+        area: {
+          DEFAULT: 'var(--bg-layer-00)',
+          hover: 'var(--bg-layer-02)',
+          selected: 'var(--bg-layer-03)',
+        },
+        dropdown: {
+          DEFAULT: 'var(--bg-layer-03)',
+          hover: 'var(--bg-layer-04)',
+          selected: 'var(--bg-layer-05)',
+        },
+      },
+      borderColor: {
+        default: 'var(--border-00)',
+      },
+      maxWidth: {
+        3: '0.75rem',
+        3.5: '0.875rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        8: '2rem',
+        12: '3rem',
+        20: '5rem',
+        50: '12.5rem',
+        60: '15rem',
+        70: '17.5rem',
+        80: '20rem',
+        90: '22.5rem',
+        100: '25rem',
+        120: '30rem',
+      },
+      minWidth: {
+        3: '0.75rem',
+        3.5: '0.875rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        8: '2rem',
+        12: '3rem',
+        20: '5rem',
+        50: '12.5rem',
+        60: '15rem',
+        70: '17.5rem',
+        80: '20rem',
+        90: '22.5rem',
+        100: '25rem',
+        120: '30rem',
+      },
+    },
   },
 };
