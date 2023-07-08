@@ -20,6 +20,15 @@
   --bg-interactive-primary-resting: hsl(var(--accent-500));
   --bg-interactive-primary-hover: hsl(var(--accent-600));
   --bg-interactive-primary-pressed: hsl(var(--accent-700));
+
+  --text-00: hsl(var(--neutral-1000));
+  --text-01: hsl(var(--neutral-980));
+  --text-02: hsl(var(--neutral-960));
+  --text-03: hsl(var(--neutral-940));
+  --text-04: hsl(var(--neutral-920));
+  --text-05: hsl(var(--neutral-900));
+  --text-06: hsl(var(--neutral-880));
+  --text-07: hsl(var(--neutral-860));
 }
 
 :root.light {

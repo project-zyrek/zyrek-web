@@ -24,6 +24,17 @@ module.exports = {
       borderColor: {
         default: 'var(--border-00)',
       },
+      textColor: {
+        default: 'var(--text-00)',
+        muted: 'var(--text-01)',
+        'muted-hover': 'var(--text-02)',
+        'muted-active': 'var(--text-03)',
+        'muted-selected': 'var(--text-04)',
+        'muted-disabled': 'var(--text-05)',
+        'muted-disabled-hover': 'var(--text-06)',
+        'muted-disabled-active': 'var(--text-07)',
+        'muted-disabled-selected': 'var(--text-08)',
+      },
       maxWidth: {
         3: '0.75rem',
         3.5: '0.875rem',
