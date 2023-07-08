@@ -1,26 +1,25 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
-import { DropdownConfigType, DropdownOptionType } from './types';
+import { DropdownConfigType, DropdownHandles, DropdownOptionType } from './types';
 import useOutsideClick from '@algospace/shared/hooks/use-outside-click';
 import clsx from 'clsx';
-
-export interface DropdownHandles {
-  isOpen: boolean;
-}
+import { DROPDOWN_TRIGGER_TYPE } from './constants';
 
 interface DropDownProps {
   className?: string;
   config: DropdownConfigType;
-  triggerNode?: React.ReactNode;
-  isTriggerNodeEnabled?: boolean;
+  triggerNode: React.ReactNode;
+  triggerType?: DROPDOWN_TRIGGER_TYPE;
 }
 
 export const DropDown = forwardRef<DropdownHandles, DropDownProps>(
-  ({ className, config, triggerNode, isTriggerNodeEnabled = true }, ref) => {
+  ({ className, config, triggerNode, triggerType = DROPDOWN_TRIGGER_TYPE.CLICK }, ref) => {
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
 
-    const [isOpen, setIsOpen] = useState(!isTriggerNodeEnabled);
+    const [isOpen, setIsOpen] = useState(false);
     const [currentConfig, setCurrentConfig] = useState(config);
+    const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
     const [configHistory, setConfigHistory] = useState<DropdownConfigType[]>([]);
 
     useImperativeHandle(ref, () => ({
@@ -30,6 +29,30 @@ export const DropDown = forwardRef<DropdownHandles, DropDownProps>(
     useOutsideClick([dropdownRef], () => {
       setIsOpen(false);
     });
+
+    useEffect(() => {
+      if (!isOpen || !dropdownRef.current || !triggerRef.current) return;
+
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      let top, left;
+
+      if (triggerRect.bottom + dropdownRect.height > window.innerHeight)
+        top = scrollTop + triggerRect.top - dropdownRect.height;
+      else top = scrollTop + triggerRect.bottom;
+
+      if (triggerRect.left + dropdownRect.width > window.innerWidth)
+        left = window.scrollX + triggerRect.right - dropdownRect.width;
+      else left = triggerRect.left;
+
+      setDropdownStyle({
+        top: top + 'px',
+        left: left + 'px',
+        position: 'absolute',
+      });
+    }, [isOpen, currentConfig]);
 
     const handleOptionClick = (event: React.MouseEvent, option: DropdownOptionType) => {
       event.stopPropagation();
@@ -42,6 +65,11 @@ export const DropDown = forwardRef<DropdownHandles, DropDownProps>(
         });
       }
     };
+
+    useEffect(() => {
+      setCurrentConfig(config);
+      setConfigHistory([]);
+    }, [isOpen]);
 
     const handleBackNavigation = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
@@ -60,7 +88,11 @@ export const DropDown = forwardRef<DropdownHandles, DropDownProps>(
       if (!config) return null;
 
       return (
-        <div className={clsx('bg-dropdown min-w-80 w-fit border border-default rounded-md', className)}>
+        <div
+          ref={dropdownRef}
+          className={clsx('bg-dropdown min-w-80 w-fit border border-default rounded-md', className)}
+          onMouseLeave={triggerType === DROPDOWN_TRIGGER_TYPE.HOVER ? () => setIsOpen(false) : undefined}
+        >
           {config.header && (
             <div className="bg-dropdown border-b border-default px-4 py-2.5 text-primary text-small">
               {config.header.enableBackNavigation && (
@@ -103,10 +135,16 @@ export const DropDown = forwardRef<DropdownHandles, DropDownProps>(
     };
 
     return (
-      <div ref={dropdownRef}>
-        <div onClick={() => setIsOpen(!isOpen)}>{isTriggerNodeEnabled && triggerNode}</div>
+      <>
+        <div
+          ref={triggerRef}
+          onClick={triggerType === DROPDOWN_TRIGGER_TYPE.CLICK ? () => setIsOpen(!isOpen) : undefined}
+          onMouseEnter={triggerType === DROPDOWN_TRIGGER_TYPE.HOVER ? () => setIsOpen(true) : undefined}
+        >
+          {triggerNode}
+        </div>
         {isOpen && renderDropdownContent(currentConfig)}
-      </div>
+      </>
     );
   },
 );

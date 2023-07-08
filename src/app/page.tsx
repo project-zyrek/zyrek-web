@@ -1,5 +1,5 @@
 'use client';
-import { DropDown } from '@algospace/shared/atoms/dropdown';
+import { DROPDOWN_TRIGGER_TYPE, DropDown } from '@algospace/shared/atoms/dropdown';
 import React from 'react';
 
 export default function Home() {
@@ -41,7 +41,11 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-base">
-      <DropDown config={dummyConfig} triggerNode={<button className="text-default">Open Dropdown</button>} />
+      <DropDown
+        config={dummyConfig}
+        triggerType={DROPDOWN_TRIGGER_TYPE.HOVER}
+        triggerNode={<button className="text-default">Open Dropdown</button>}
+      />
     </div>
   );
 }
