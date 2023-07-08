@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-base">
-      <DropDown config={dummyConfig} triggerNode={<button>Open Dropdown</button>} />
+      <DropDown config={dummyConfig} triggerNode={<button className="text-default">Open Dropdown</button>} />
     </div>
   );
 }

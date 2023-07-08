@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { DropdownConfigType, DropdownOptionType } from './types';
+import useOutsideClick from '@algospace/shared/hooks/use-outside-click';
 
 interface DropDownProps {
   className?: string;
@@ -10,15 +11,15 @@ interface DropDownProps {
 }
 
 export const DropDown = ({ className, config, triggerNode, isTriggerNodeEnabled = true }: DropDownProps) => {
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const [isOpen, setIsOpen] = useState(!isTriggerNodeEnabled);
   const [currentConfig, setCurrentConfig] = useState(config);
   const [configHistory, setConfigHistory] = useState<DropdownConfigType[]>([]);
 
-  const toggleDropdown = () => {
-    if (isTriggerNodeEnabled) {
-      setIsOpen(!isOpen);
-    }
-  };
+  useOutsideClick([dropdownRef], () => {
+    setIsOpen(false);
+  });
 
   const handleOptionClick = (event: React.MouseEvent, option: DropdownOptionType) => {
     event.stopPropagation();
@@ -49,7 +50,7 @@ export const DropDown = ({ className, config, triggerNode, isTriggerNodeEnabled 
     if (!config) return null;
 
     return (
-      <div className="bg-dropdown min-w-80 w-fit border border-default rounded-md">
+      <div ref={dropdownRef} className="bg-dropdown min-w-80 w-fit border border-default rounded-md">
         {config.header && (
           <div className="bg-dropdown border-b border-default px-4 py-2.5 text-primary text-small">
             {config.header.enableBackNavigation && (
@@ -92,7 +93,7 @@ export const DropDown = ({ className, config, triggerNode, isTriggerNodeEnabled 
   };
 
   return (
-    <div onClick={toggleDropdown}>
+    <div onClick={() => setIsOpen(true)}>
       {isTriggerNodeEnabled && triggerNode}
       {isOpen && renderDropdownContent(currentConfig)}
     </div>
