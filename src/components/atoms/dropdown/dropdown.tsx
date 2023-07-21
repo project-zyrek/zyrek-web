@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 import { DropdownConfigType, DropdownHandles, DropdownOptionType } from './types';
-import useOutsideClick from '@algospace/shared/hooks/use-outside-click';
+import useOutsideClick from '@algospace/hooks/use-outside-click';
 import clsx from 'clsx';
 import { DROPDOWN_TRIGGER_TYPE } from './constants';
 
