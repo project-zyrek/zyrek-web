@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
 
+export interface DropdownHandles {
+  isOpen: boolean;
+}
+
 export interface DropdownHeaderType {
   title?: string;
   renderer?: ReactNode;
