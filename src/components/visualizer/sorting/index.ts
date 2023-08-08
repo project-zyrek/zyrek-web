@@ -1,1 +1,1 @@
-export * from './sorting-visualizer';
+export * from './visualizer';
