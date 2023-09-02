@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GAP, MIN_BAR_COUNT, MIN_BAR_HEIGHT } from './constants';
 import { Bar } from '@algospace/components/atoms/bar';
+import { BubbleSort } from './utils';
 
 export const SortingVisualizer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,20 +32,26 @@ export const SortingVisualizer = () => {
     const barHeights = Array.from({ length: barCount }, () =>
       Math.floor(Math.random() * (barMaxHeight - MIN_BAR_HEIGHT) + MIN_BAR_HEIGHT),
     );
+    console.log(barHeights);
     setBarHeights(barHeights);
-
-    console.log('barHeights', barHeights);
   }, [containerRef, containerRef.current?.clientWidth, containerRef.current?.clientHeight, barCount]);
 
+  const onStartHandler = useCallback(async () => {
+    await BubbleSort(containerRef, 100);
+  }, [barHeights, containerRef]);
+
   return (
-    <div
-      className="flex justify-center items-end w-full min-h-[600px] bg-slate-600"
-      style={{ gap: `${GAP}px`, padding: `${GAP}px` }}
-      ref={containerRef}
-    >
-      {barHeights.map((barHeight, index) => {
-        return <Bar key={index} width={barWidth} height={barHeight} color="#232323" />;
-      })}
+    <div>
+      <div
+        className="flex justify-center items-end w-full min-h-[600px] bg-slate-600"
+        style={{ gap: `${GAP}px`, padding: `${GAP}px` }}
+        ref={containerRef}
+      >
+        {barHeights.map((barHeight, index) => {
+          return <Bar key={index} width={barWidth} height={barHeight} color="#232323" />;
+        })}
+      </div>
+      <button onClick={onStartHandler}>Start</button>
     </div>
   );
 };

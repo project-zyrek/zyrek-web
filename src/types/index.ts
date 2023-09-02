@@ -3,3 +3,9 @@ export type Enumerate<N extends number, Acc extends number[] = []> = Acc['length
   : Enumerate<N, [...Acc, Acc['length']]>;
 
 export type Range<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>;
+
+export enum ComparisonType {
+  LessThan = 'LessThan',
+  GreaterThan = 'GreaterThan',
+  Equal = 'Equal',
+}
