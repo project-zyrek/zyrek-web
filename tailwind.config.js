@@ -5,35 +5,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        base: 'var(--bg-layer-00)',
-        card: 'var(--bg-layer-01)',
-        'card-hover': 'var(--bg-layer-02)',
-        'card-active': 'var(--bg-layer-03)',
-        'card-selected': 'var(--bg-layer-04)',
-        area: {
-          DEFAULT: 'var(--bg-layer-00)',
-          hover: 'var(--bg-layer-02)',
-          selected: 'var(--bg-layer-03)',
-        },
-        dropdown: {
-          DEFAULT: 'var(--bg-layer-03)',
-          hover: 'var(--bg-layer-04)',
-          selected: 'var(--bg-layer-05)',
-        },
+        'area-00': '#000000',
+        'area-01': '#0D0D0D',
       },
       borderColor: {
-        default: 'var(--border-00)',
+        'outline-00': '#333333',
       },
       textColor: {
-        default: 'var(--text-00)',
-        muted: 'var(--text-01)',
-        'muted-hover': 'var(--text-02)',
-        'muted-active': 'var(--text-03)',
-        'muted-selected': 'var(--text-04)',
-        'muted-disabled': 'var(--text-05)',
-        'muted-disabled-hover': 'var(--text-06)',
-        'muted-disabled-active': 'var(--text-07)',
-        'muted-disabled-selected': 'var(--text-08)',
+        primary: '#ffffff',
+        secondary: '#737373',
       },
       maxWidth: {
         3: '0.75rem',
