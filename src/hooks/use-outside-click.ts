@@ -21,5 +21,3 @@ export const useOutsideClick = (refs: React.RefObject<HTMLElement>[], onOutsideC
     };
   }, [refs, onOutsideClick]);
 };
-
-
