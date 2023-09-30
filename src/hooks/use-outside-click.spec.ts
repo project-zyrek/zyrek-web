@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-
-import { useOutsideClick } from './use-outside-click'; // Import your custom hook
+import { render, fireEvent } from '@testing-library/react';
+import { useOutsideClick } from './use-outside-click'; 
 
 describe('useOutsideClick', () => {
   it('should call onOutsideClick when clicking outside the ref element', () => {
