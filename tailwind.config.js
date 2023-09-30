@@ -8,8 +8,13 @@ module.exports = {
         'area-00': '#000000',
         'area-01': '#0D0D0D',
       },
-      borderColor: {},
-      textColor: {},
+      borderColor: {
+        'outline-00': '#333333',
+      },
+      textColor: {
+        primary: '#ffffff',
+        secondary: '#737373',
+      },
       maxWidth: {
         3: '0.75rem',
         3.5: '0.875rem',
