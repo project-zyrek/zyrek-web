@@ -4,7 +4,10 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
-      backgroundColor: {},
+      backgroundColor: {
+        'area-00': '#000000',
+        'area-01': '#0D0D0D',
+      },
       borderColor: {},
       textColor: {},
       maxWidth: {
