@@ -4,37 +4,9 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
-      backgroundColor: {
-        base: 'var(--bg-layer-00)',
-        card: 'var(--bg-layer-01)',
-        'card-hover': 'var(--bg-layer-02)',
-        'card-active': 'var(--bg-layer-03)',
-        'card-selected': 'var(--bg-layer-04)',
-        area: {
-          DEFAULT: 'var(--bg-layer-00)',
-          hover: 'var(--bg-layer-02)',
-          selected: 'var(--bg-layer-03)',
-        },
-        dropdown: {
-          DEFAULT: 'var(--bg-layer-03)',
-          hover: 'var(--bg-layer-04)',
-          selected: 'var(--bg-layer-05)',
-        },
-      },
-      borderColor: {
-        default: 'var(--border-00)',
-      },
-      textColor: {
-        default: 'var(--text-00)',
-        muted: 'var(--text-01)',
-        'muted-hover': 'var(--text-02)',
-        'muted-active': 'var(--text-03)',
-        'muted-selected': 'var(--text-04)',
-        'muted-disabled': 'var(--text-05)',
-        'muted-disabled-hover': 'var(--text-06)',
-        'muted-disabled-active': 'var(--text-07)',
-        'muted-disabled-selected': 'var(--text-08)',
-      },
+      backgroundColor: {},
+      borderColor: {},
+      textColor: {},
       maxWidth: {
         3: '0.75rem',
         3.5: '0.875rem',
